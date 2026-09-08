@@ -2,9 +2,6 @@
 
 import { useEffect } from "react";
 
-import { Button } from "@/components/ui/button";
-import { Container } from "@/components/ui/container";
-
 export default function Error({
   error,
   reset,
@@ -17,12 +14,17 @@ export default function Error({
   }, [error]);
 
   return (
-    <Container className="flex flex-1 flex-col items-center justify-center gap-4 py-24 text-center">
-      <h1 className="text-3xl font-semibold tracking-tight">Algo deu errado</h1>
-      <p className="text-black/60 dark:text-white/60">
-        Tente novamente. Se o erro persistir, entre em contato com o suporte.
+    <div className="bg-card mx-auto flex min-h-dvh w-full max-w-[440px] flex-col items-center justify-center gap-4 px-6 text-center">
+      <h1 className="text-lg font-bold text-white">Algo deu errado</h1>
+      <p className="text-sm text-white/50">
+        Tente novamente. Se o erro persistir, avise o suporte.
       </p>
-      <Button onClick={reset}>Tentar novamente</Button>
-    </Container>
+      <button
+        onClick={reset}
+        className="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-neutral-900 transition-opacity hover:opacity-90"
+      >
+        Tentar novamente
+      </button>
+    </div>
   );
 }
