@@ -9,26 +9,26 @@ export function CompanyCard({ company }: { company: Company }) {
   const links = visibleLinks(company.links);
 
   return (
-    <article className="rounded-2xl bg-white px-4 py-4 shadow-sm">
-      <div className="flex h-8 items-center justify-center">
+    <article className="rounded-2xl bg-white px-5 py-5 shadow-sm lg:rounded-3xl lg:px-6 lg:py-7">
+      {/* Altura fixa para todos os logos ficarem alinhados entre os cartões. */}
+      <div className="flex h-9 items-center justify-center lg:h-13">
         {company.logo ? (
           <Image
             src={company.logo}
             alt={company.name}
-            width={200}
-            height={40}
-            unoptimized
-            className="h-7 w-auto object-contain"
+            width={640}
+            height={160}
+            className="max-h-9 w-auto max-w-[72%] object-contain lg:max-h-13"
           />
         ) : (
-          <span className="text-base font-bold text-neutral-900">
+          <span className="text-lg font-bold text-neutral-900">
             {company.name}
           </span>
         )}
       </div>
 
       {links.length > 0 && (
-        <ul className="mt-3 flex items-center justify-center gap-5">
+        <ul className="mt-4 flex items-center justify-center gap-6 lg:mt-6 lg:gap-8">
           {links.map((link) => {
             const Icon = platformIcon[link.platform];
             const label = `${platformLabel[link.platform]} — ${company.name}`;
@@ -41,9 +41,9 @@ export function CompanyCard({ company }: { company: Company }) {
                   rel="noopener noreferrer"
                   aria-label={label}
                   title={label}
-                  className="block text-neutral-700 transition-colors hover:text-neutral-950 focus-visible:outline-2 focus-visible:outline-offset-2"
+                  className="text-company-icon block transition-opacity hover:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-2"
                 >
-                  <Icon className="size-5" />
+                  <Icon className="size-6 lg:size-7" />
                 </a>
               </li>
             );

@@ -23,7 +23,7 @@ Tudo vive em [`src/data/people.ts`](src/data/people.ts). Acrescente um objeto:
   name: "Rafael Almeida",
   role: "Sócio",
   organization: "MGA Holding",    // aparece ao lado do cargo
-  photo: "/people/rafael.jpg",    // arquivo em public/people/
+  photo: "/images/people/rafael.jpg", // arquivo em public/images/people/
   links: [
     { platform: "email",     value: "rafael@mga.com.br" },
     { platform: "linkedin",  value: "https://linkedin.com/in/..." },
@@ -41,17 +41,17 @@ Nada além disso muda: a rota, o HTML estático e o `<title>` saem automaticamen
 - **Sem `photo`**, o avatar mostra as iniciais.
 
 As 4 empresas do rodapé ficam em [`src/data/companies.ts`](src/data/companies.ts),
-com os logos em `public/companies/`.
+com os logos em `public/images/companies/`.
 
-> Os dados hoje são **exemplo**, só para a página renderizar completa.
-> Troque por reais antes de publicar. O mesmo vale para os logos e o avatar,
-> que são placeholders gerados.
+> As imagens já são as reais. Os **links e contatos ainda são de exemplo**
+> (`exemplo@mga.com.br`, `5544999990000`, `instagram.com/exemplo`), só para a
+> página renderizar completa — troque antes de publicar.
 
 ## Deploy
 
-| Cenário                                         | Comando                | O que sobe                    |
-| ----------------------------------------------- | ---------------------- | ----------------------------- |
-| **Vercel** (teste)                              | `npm run build`        | Deploy direto do repositório  |
+| Cenário                                         | Comando                | O que sobe                       |
+| ----------------------------------------------- | ---------------------- | -------------------------------- |
+| **Vercel** (teste)                              | `npm run build`        | Deploy direto do repositório     |
 | **Hostinger** ou outra hospedagem compartilhada | `npm run build:static` | Conteúdo da pasta `out/` via FTP |
 
 O `build:static` liga `output: "export"` e gera HTML puro (`out/rafael/index.html`),
@@ -68,15 +68,16 @@ estática.
 
 ## Scripts
 
-| Script                 | Descrição                             |
-| ---------------------- | ------------------------------------- |
-| `npm run dev`          | Servidor de desenvolvimento (Turbopack) |
-| `npm run build`        | Build de produção                     |
-| `npm run build:static` | Build estático em `out/`              |
-| `npm run start`        | Sobe o build de produção              |
-| `npm run lint`         | ESLint                                |
-| `npm run typecheck`    | `tsc --noEmit`                        |
-| `npm run format`       | Prettier                              |
+| Script                    | Descrição                                   |
+| ------------------------- | ------------------------------------------- |
+| `npm run dev`             | Servidor de desenvolvimento (Turbopack)     |
+| `npm run build`           | Build de produção                           |
+| `npm run build:static`    | Build estático em `out/`                    |
+| `npm run start`           | Sobe o build de produção                    |
+| `npm run lint`            | ESLint                                      |
+| `npm run typecheck`       | `tsc --noEmit`                              |
+| `npm run format`          | Prettier                                    |
+| `npm run optimize:images` | Corta e reduz as imagens de `public/images` |
 
 ## Estrutura
 
@@ -108,14 +109,51 @@ src/
 └── types/index.ts
 ```
 
+## Imagens
+
+Todas ficam em `public/images/`, e o caminho na URL espelha a pasta:
+
+```
+public/images/
+├── people/                  # Fotos -> photo: "/images/people/Foto-Rafael.png"
+│   └── Foto-Rafael.png
+├── companies/               # Logos -> logo: "/images/companies/Logo-Uni.png"
+│   ├── Logo-Uni.png
+│   ├── Logo-Usports.png
+│   ├── Logo-MgaT.png
+│   └── Logo-Factory.png
+└── brand/                   # Marca do grupo (config em src/config/site.ts)
+    ├── logo-topocard.png    # selo redondo no topo do painel
+    └── Logo-footer.png      # assinatura do rodapé, já com o texto
+```
+
+### Sempre rode o otimizador ao trocar uma imagem
+
+```bash
+npm run optimize:images
+```
+
+Os arquivos que vêm do design costumam ser 4096×4096 com muita margem
+transparente e ~500 KB cada, enquanto na tela aparecem com ~50 px. O script
+corta a margem, reduz para o tamanho de exibição (2× para telas retina) e
+recomprime **no lugar**. Na primeira passagem: **3.160 KB → 224 KB (−93%)**.
+
+É idempotente — rodar de novo num arquivo já processado não degrada a imagem.
+Use `node scripts/optimize-images.mjs --dry-run` para só ver o relatório.
+
+> O corte da margem transparente é o que faz os logos aparecerem grandes e
+> alinhados nos cartões. Sem ele, um logo quadrado com margem renderiza
+> minúsculo ao lado de um logo já recortado.
+
 ### Ajustes visuais rápidos
 
 - **Cor da faixa superior:** `--brand` em [`src/app/globals.css`](src/app/globals.css).
 - **Cores dos botões:** `platformColor` em [`src/components/contact-icon.tsx`](src/components/contact-icon.tsx).
-- **Logo do grupo:** troque `public/brand/mark.svg`.
+- **Logos do grupo:** troque os arquivos em `public/images/brand/` (caminhos em [`src/config/site.ts`](src/config/site.ts)).
+- **Cores do tema:** `--brand`, `--card-from`, `--card-to`, `--panel` e `--company-icon` em [`src/app/globals.css`](src/app/globals.css).
 
 ## Variáveis de ambiente
 
-| Nome                  | Obrigatória | Descrição                                                       |
-| --------------------- | ----------- | --------------------------------------------------------------- |
+| Nome                  | Obrigatória | Descrição                                                         |
+| --------------------- | ----------- | ----------------------------------------------------------------- |
 | `NEXT_PUBLIC_APP_URL` | Sim         | URL pública, usada no metadata e nos previews de compartilhamento |

@@ -29,14 +29,14 @@ export const platformIcon: Record<
   tiktok: TiktokIcon,
 };
 
-/** Cor de marca usada nos botões circulares da pessoa. */
+/** Cor do botão circular de cada contato da pessoa. */
 export const platformColor: Record<LinkPlatform, string> = {
   site: "#4B5563",
-  email: "#E8552D",
-  phone: "#2F80ED",
-  whatsapp: "#25D366",
-  linkedin: "#0A66C2",
-  instagram: "#E1306C",
+  email: "#E5372C", // vermelho
+  linkedin: "#0A66C2", // azul
+  whatsapp: "#25D366", // verde
+  phone: "#22B5E0", // azul ciano
+  instagram: "#ED2A7B", // rosa
   facebook: "#1877F2",
   youtube: "#FF0000",
   x: "#000000",

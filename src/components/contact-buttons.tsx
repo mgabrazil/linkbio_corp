@@ -10,7 +10,7 @@ export function ContactButtons({ links }: { links: ContactLink[] }) {
   if (visible.length === 0) return null;
 
   return (
-    <ul className="flex flex-wrap items-center justify-center gap-3">
+    <ul className="flex flex-wrap items-center justify-center gap-3 lg:gap-4">
       {visible.map((link) => {
         const Icon = platformIcon[link.platform];
         const label = platformLabel[link.platform];
@@ -24,9 +24,9 @@ export function ContactButtons({ links }: { links: ContactLink[] }) {
               aria-label={label}
               title={label}
               style={{ backgroundColor: platformColor[link.platform] }}
-              className="flex size-11 items-center justify-center rounded-full text-white transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="flex size-11 items-center justify-center rounded-full text-white transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white lg:size-15"
             >
-              <Icon className="size-5" />
+              <Icon className="size-5 lg:size-7" />
             </a>
           </li>
         );

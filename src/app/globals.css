@@ -1,24 +1,40 @@
 @import "tailwindcss";
 
 :root {
-  /* A página é escura por natureza: o cartão é preto em qualquer tema. */
-  --background: #14141a;
+  /* Faixa superior, atrás da foto. */
+  --brand: #b7a66f;
+
+  /* O cartão é um gradiente entre estes dois tons. */
+  --card-from: #151515;
+  --card-to: #1d1d1d;
+
+  /* Fundo da página, fora do cartão. */
+  --page: #000000;
+  --background: #151515;
   --foreground: #fafafa;
-  --card: #0b0b0f;
-  /* Faixa superior, atrás da foto. Troque pela cor da marca. */
-  --brand: #b5a56d;
+
+  /* Painel claro que agrupa os cartões das empresas. */
+  --panel: #ededed;
+  /* Ícones de contato dentro do cartão branco de cada empresa. */
+  --company-icon: #1b2a55;
 }
 
 @theme inline {
+  --color-brand: var(--brand);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-brand: var(--brand);
+  --color-panel: var(--panel);
+  --color-company-icon: var(--company-icon);
   --font-sans: var(--font-jakarta);
 }
 
 body {
-  background: var(--background);
+  background: var(--page);
   color: var(--foreground);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Fundo da página, atrás do cartão: preto puro. */
+.page-backdrop {
+  background: var(--page);
 }

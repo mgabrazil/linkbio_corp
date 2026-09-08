@@ -3,16 +3,24 @@ import Image from "next/image";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
-/** Marca do grupo. Troque public/brand/mark.svg pelo logo real. */
-export function BrandMark({ className }: { className?: string }) {
+type BrandMarkProps = {
+  /** "badge" é só o globo; "footer" já traz o texto "MGA Holding". */
+  variant: "badge" | "footer";
+  className?: string;
+};
+
+/** Marca do grupo. Troque os arquivos em public/images/brand. */
+export function BrandMark({ variant, className }: BrandMarkProps) {
+  const isBadge = variant === "badge";
+
   return (
     <Image
-      src="/brand/mark.svg"
+      src={isBadge ? siteConfig.brand.badge : siteConfig.brand.footer}
       alt={siteConfig.name}
-      width={40}
-      height={40}
-      unoptimized
-      className={cn("size-10", className)}
+      width={640}
+      height={isBadge ? 613 : 213}
+      className={cn("w-auto object-contain", className)}
+      priority={!isBadge}
     />
   );
 }

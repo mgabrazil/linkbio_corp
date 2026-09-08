@@ -13,8 +13,7 @@ export function Avatar({ name, photo, className }: AvatarProps) {
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-full bg-neutral-800",
-        "ring-4 ring-[var(--brand)]",
+        "relative overflow-hidden rounded-full bg-neutral-700",
         className,
       )}
     >
@@ -24,7 +23,6 @@ export function Avatar({ name, photo, className }: AvatarProps) {
           alt={name}
           fill
           sizes="128px"
-          unoptimized={photo.endsWith(".svg")}
           className="object-cover"
           priority
         />

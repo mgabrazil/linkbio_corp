@@ -14,7 +14,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="bg-card mx-auto flex min-h-dvh w-full max-w-[440px] flex-col items-center justify-center gap-4 px-6 text-center">
+    <div className="page-backdrop mx-auto flex min-h-dvh w-full max-w-110 flex-col items-center justify-center gap-4 px-6 text-center">
       <h1 className="text-lg font-bold text-white">Algo deu errado</h1>
       <p className="text-sm text-white/50">
         Tente novamente. Se o erro persistir, avise o suporte.
