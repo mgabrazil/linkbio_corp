@@ -70,16 +70,29 @@ for (const folder of Object.keys(maxWidth)) {
 
     const after = await sharp(output).metadata();
 
+    /*
+     * Só grava se houver ganho real. Recomprimir um arquivo já processado
+     * gera bytes diferentes com a mesma imagem — o que suja o `git status`
+     * com diffs binários inúteis a cada execução.
+     */
+    const mudouDimensao =
+      after.width !== before.width || after.height !== before.height;
+    const encolheu = output.length < input.length * 0.95;
+    const vaiGravar = mudouDimensao || encolheu;
+
     totalBefore += input.length;
-    totalAfter += output.length;
+    totalAfter += vaiGravar ? output.length : input.length;
 
     const label = `${folder}/${file}`.padEnd(30);
     console.log(
-      `${label} ${before.width}x${before.height} ${kb(input.length)}` +
-        `  ->  ${after.width}x${after.height} ${kb(output.length)}`,
+      vaiGravar
+        ? `${label} ${before.width}x${before.height} ${kb(input.length)}` +
+            `  ->  ${after.width}x${after.height} ${kb(output.length)}`
+        : `${label} ${before.width}x${before.height} ${kb(input.length)}` +
+            `      (já otimizado, mantido)`,
     );
 
-    if (!dryRun) await writeFile(filePath, output);
+    if (vaiGravar && !dryRun) await writeFile(filePath, output);
   }
 }
 
