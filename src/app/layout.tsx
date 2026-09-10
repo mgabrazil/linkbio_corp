@@ -12,7 +12,8 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
+  // Sem domínio configurado, o Next resolve o endereço sozinho.
+  metadataBase: siteConfig.url ? new URL(siteConfig.url) : undefined,
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,

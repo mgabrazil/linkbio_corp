@@ -9,7 +9,6 @@ Stack: **Next.js 16** (App Router) · **TypeScript** · **Tailwind CSS v4** · f
 
 ```bash
 npm install
-cp .env.example .env.local
 npm run dev
 ```
 
@@ -103,7 +102,6 @@ src/
 │   └── people.ts           # ← as pessoas
 ├── lib/
 │   ├── contact.ts          # Monta mailto:, tel: e wa.me
-│   ├── env.ts
 │   ├── people.ts
 │   └── utils.ts            # cn()
 └── types/index.ts
@@ -164,8 +162,17 @@ relatório.
 - **Logos do grupo:** troque os arquivos em `public/images/brand/` (caminhos em [`src/config/site.ts`](src/config/site.ts)).
 - **Cores do tema:** `--brand`, `--card-from`, `--card-to`, `--panel` e `--company-icon` em [`src/app/globals.css`](src/app/globals.css).
 
-## Variáveis de ambiente
+## Domínio
 
-| Nome                  | Obrigatória | Descrição                                                         |
-| --------------------- | ----------- | ----------------------------------------------------------------- |
-| `NEXT_PUBLIC_APP_URL` | Sim         | URL pública, usada no metadata e nos previews de compartilhamento |
+O projeto **não usa variáveis de ambiente** — não há nada para configurar na
+Vercel ou na Hostinger. O endereço do site fica em `url` no
+[`src/config/site.ts`](src/config/site.ts):
+
+```ts
+url: "https://seu-projeto.vercel.app",  // ou "https://mga.com.br"
+```
+
+Ele afeta **apenas o preview de compartilhamento** (WhatsApp, LinkedIn). O
+site funciona normalmente com o campo vazio, mas aí a imagem do preview aponta
+para `localhost` e não carrega para quem recebe o link. Vale preencher com o
+endereço da Vercel enquanto o domínio não existe.
