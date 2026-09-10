@@ -115,8 +115,8 @@ Todas ficam em `public/images/`, e o caminho na URL espelha a pasta:
 
 ```
 public/images/
-├── people/                  # Fotos -> photo: "/images/people/Foto-Rafael.png"
-│   └── Foto-Rafael.png
+├── people/                  # Fotos (.webp) -> "/images/people/Foto-Rafael.webp"
+│   └── Foto-Rafael.webp
 ├── companies/               # Logos -> logo: "/images/companies/Logo-Uni.png"
 │   ├── Logo-Uni.png
 │   ├── Logo-Usports.png
@@ -133,13 +133,25 @@ public/images/
 npm run optimize:images
 ```
 
-Os arquivos que vêm do design costumam ser 4096×4096 com muita margem
-transparente e ~500 KB cada, enquanto na tela aparecem com ~50 px. O script
-corta a margem, reduz para o tamanho de exibição (2× para telas retina) e
-recomprime **no lugar**. Na primeira passagem: **3.160 KB → 224 KB (−93%)**.
+Os arquivos que vêm do design são grandes demais para o tamanho em que
+aparecem: logos em 4096×4096 com muita margem transparente, fotos em 1254px
+para um avatar de 124px. O script corta a margem, reduz e recomprime **no
+lugar**. Na última passagem: **7.150 KB → 243 KB (−97%)**.
 
-É idempotente — rodar de novo num arquivo já processado não degrada a imagem.
-Use `node scripts/optimize-images.mjs --dry-run` para só ver o relatório.
+Logo e foto recebem tratamentos diferentes, e é importante não misturar:
+
+|                        | Formato                     | Por quê                                                                             |
+| ---------------------- | --------------------------- | ----------------------------------------------------------------------------------- |
+| `companies/`, `brand/` | PNG com paleta de 256 cores | São cores chapadas; 256 bastam e o arquivo fica minúsculo                           |
+| `people/`              | **WebP** em cor real        | Quantizar foto para 256 cores causa posterização — faixas visíveis na pele e no céu |
+
+Fotos em `.png` são **convertidas para `.webp`** e o `.png` de origem é
+apagado. Depois disso, ajuste o caminho em `src/data/people.ts`.
+
+Rodar de novo é seguro: o script só grava quando a dimensão muda ou o arquivo
+encolhe pelo menos 5%, então não suja o `git status` com diffs binários
+inúteis. Use `node scripts/optimize-images.mjs --dry-run` para só ver o
+relatório.
 
 > O corte da margem transparente é o que faz os logos aparecerem grandes e
 > alinhados nos cartões. Sem ele, um logo quadrado com margem renderiza
