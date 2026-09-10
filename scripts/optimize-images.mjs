@@ -1,22 +1,4 @@
-/**
- * Prepara os assets de public/images para a web.
- *
- * Os arquivos chegam do design grandes demais para o tamanho em que aparecem
- * na tela: logos em 4096x4096 com muita margem transparente, fotos em 1254px
- * para um avatar de ~124px. O script corta a margem, reduz e recomprime.
- *
- * LOGO e FOTO recebem tratamentos diferentes, e misturar os dois estraga a
- * imagem:
- *
- *   - Logo   -> PNG com paleta indexada. São poucas cores chapadas, então
- *               256 cores bastam e o arquivo fica minúsculo.
- *   - Foto   -> WebP em cor real. Quantizar uma foto para 256 cores causa
- *               posterização (faixas visíveis na pele e no céu). WebP guarda
- *               a cor real e ainda pesa menos que o PNG.
- *
- *   node scripts/optimize-images.mjs           # aplica
- *   node scripts/optimize-images.mjs --dry-run # só relatório
- */
+
 import { readdir, readFile, unlink, writeFile } from "node:fs/promises";
 import path from "node:path";
 
