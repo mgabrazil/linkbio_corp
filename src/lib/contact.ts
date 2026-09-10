@@ -5,17 +5,28 @@ function digits(value: string) {
   return value.replace(/\D/g, "");
 }
 
-/** Monta o href final a partir do tipo do link. */
+/**
+ * Monta o href final a partir do tipo do link.
+ *
+ * Aceita o valor puro ("fulano@mga.com", "5544999990000") ou já no formato
+ * final ("mailto:fulano@mga.com", "tel:+5544...", "https://wa.me/5544..."),
+ * porque os dados são preenchidos à mão e as duas formas aparecem. Sem essa
+ * tolerância, um "mailto:" digitado junto virava "mailto:mailto:...".
+ */
 export function linkHref(link: ContactLink) {
+  const value = link.value.trim();
+
+  if (/^(https?|mailto|tel):/i.test(value)) return value;
+
   switch (link.platform) {
     case "email":
-      return `mailto:${link.value}`;
+      return `mailto:${value}`;
     case "phone":
-      return `tel:+${digits(link.value)}`;
+      return `tel:+${digits(value)}`;
     case "whatsapp":
-      return `https://wa.me/${digits(link.value)}`;
+      return `https://wa.me/${digits(value)}`;
     default:
-      return link.value;
+      return value;
   }
 }
 
