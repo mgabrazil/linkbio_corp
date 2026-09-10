@@ -53,7 +53,7 @@ export default async function PersonPage({ params }: PageProps<"/[slug]">) {
         {/* Faixa da marca: a foto se apoia na emenda com o cartão escuro. */}
         <div className="h-21.5 shrink-0 lg:h-30" />
 
-        <div className="relative flex flex-1 flex-col rounded-t-[2.5rem] bg-[linear-gradient(180deg,var(--card-from),var(--card-to))] px-5 pb-8 sm:px-6 lg:rounded-t-[3rem] lg:px-10 lg:pb-10">
+        <div className="relative flex flex-1 flex-col rounded-t-[2.5rem] bg-[linear-gradient(180deg,var(--card-from),var(--card-to))] px-10.5 pb-8 lg:rounded-t-[3rem] lg:px-12 lg:pb-10">
           <Avatar
             name={person.name}
             photo={person.photo}
@@ -84,7 +84,7 @@ export default async function PersonPage({ params }: PageProps<"/[slug]">) {
               <BrandMark variant="badge" className="h-9 lg:h-12" />
             </div>
 
-            <ul className="bg-panel flex flex-col gap-4 rounded-[28px] p-4 pt-12 lg:grid lg:grid-cols-2 lg:gap-6 lg:rounded-[36px] lg:p-6 lg:pt-16">
+            <ul className="bg-panel flex flex-col gap-4 rounded-[28px] p-7.25 pt-12 lg:grid lg:grid-cols-2 lg:gap-6 lg:rounded-[36px] lg:p-8 lg:pt-16">
               {companies.map((company) => (
                 <li key={company.id}>
                   <CompanyCard company={company} />
@@ -94,7 +94,7 @@ export default async function PersonPage({ params }: PageProps<"/[slug]">) {
           </section>
 
           <footer className="mt-auto flex flex-col items-center border-t border-white/15 pt-8 lg:pt-10">
-            <BrandMark variant="footer" className="h-12 lg:h-16" />
+            <BrandMark variant="footer" className="h-13 lg:h-16" />
           </footer>
         </div>
       </div>

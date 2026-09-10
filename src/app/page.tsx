@@ -9,8 +9,8 @@ export default function HomePage() {
   return (
     <div className="page-backdrop flex min-h-dvh justify-center px-5 py-12 sm:px-6">
       <div className="flex w-full max-w-110 flex-col">
-        <header className="flex flex-col items-center gap-3 text-center">
-          <BrandMark variant="footer" className="h-10" />
+        <header className="flex flex-col items-center gap-4 text-center">
+          <BrandMark variant="footer" className="h-16 lg:h-22" />
           <p className="text-sm text-white/50">{siteConfig.description}</p>
         </header>
 

@@ -1,21 +1,14 @@
 import type { Company } from "@/types";
-
-/**
- * As 4 empresas do grupo, exibidas em todas as páginas.
- * PREENCHER: coloque os logos em public/images/companies/ e cole as URLs.
- * Os valores abaixo são EXEMPLO. Link com value "" não é renderizado,
- * então dá para preencher aos poucos.
- */
 export const companies: Company[] = [
   {
     id: "unipaper",
     name: "Unipaper",
     logo: "/images/companies/Logo-Uni.png",
     links: [
-      { platform: "site", value: "https://exemplo.com.br" },
-      { platform: "email", value: "contato@exemplo.com.br" },
-      { platform: "whatsapp", value: "5544999990000" },
-      { platform: "instagram", value: "https://www.instagram.com/exemplo" },
+      { platform: "site", value: "https://www.unipaperbsb.com.br/" },
+      { platform: "email", value: "mailto:bsb@unipaperbsb.com" },
+      { platform: "whatsapp", value: "https://wa.me/556182555095" },
+      { platform: "instagram", value: "https://www.instagram.com/unipaperoficial/" },
     ],
   },
   {
@@ -23,10 +16,10 @@ export const companies: Company[] = [
     name: "Usports",
     logo: "/images/companies/Logo-Usports.png",
     links: [
-      { platform: "site", value: "https://exemplo.com.br" },
-      { platform: "email", value: "contato@exemplo.com.br" },
-      { platform: "whatsapp", value: "5544999990000" },
-      { platform: "instagram", value: "https://www.instagram.com/exemplo" },
+      { platform: "site", value: "https://www.usportstore.com" },
+      { platform: "email", value: "mailto:comercial@usportsbr.com" },
+      { platform: "whatsapp", value: "https://wa.me/556191050551" },
+      { platform: "instagram", value: "https://www.instagram.com/usportsbr/" },
     ],
   },
   {
@@ -34,10 +27,10 @@ export const companies: Company[] = [
     name: "MGA",
     logo: "/images/companies/Logo-MgaT.png",
     links: [
-      { platform: "site", value: "https://exemplo.com.br" },
-      { platform: "email", value: "contato@exemplo.com.br" },
-      { platform: "whatsapp", value: "5544999990000" },
-      { platform: "instagram", value: "https://www.instagram.com/exemplo" },
+      { platform: "site", value: "https://mgatourcorp.com/" },
+      { platform: "email", value: "mailto:bsb@mgatour.com.br" },
+      { platform: "whatsapp", value: "https://wa.me/556181506550" },
+      { platform: "instagram", value: "https://www.instagram.com/mgatourbrazil/" },
     ],
   },
   {
@@ -45,10 +38,9 @@ export const companies: Company[] = [
     name: "Us.factory",
     logo: "/images/companies/Logo-Factory.png",
     links: [
-      { platform: "site", value: "https://exemplo.com.br" },
-      { platform: "email", value: "contato@exemplo.com.br" },
-      { platform: "whatsapp", value: "5544999990000" },
-      { platform: "instagram", value: "https://www.instagram.com/exemplo" },
+      { platform: "email", value: "mailto:diretoria@mgabrazil.com" },
+      { platform: "whatsapp", value: "00" },
+      { platform: "instagram", value: "https://www.instagram.com/usfactoryoficial/" },
     ],
   },
 ];

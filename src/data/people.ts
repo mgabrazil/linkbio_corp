@@ -1,15 +1,5 @@
 import type { Person } from "@/types";
 
-/**
- * Cada pessoa vira uma página estática em /<slug>.
- * Para adicionar alguém, basta acrescentar um objeto aqui — nada mais muda.
- *
- * Os valores abaixo são EXEMPLO, só para a página renderizar completa.
- * Troque por dados reais e coloque a foto em public/images/people/<slug>.jpg.
- * Link com value "" some da página, então dá para preencher aos poucos.
- *
- * A ordem dos links é a ordem dos botões na tela.
- */
 export const people: Person[] = [
   {
     slug: "rafael",
@@ -18,25 +8,36 @@ export const people: Person[] = [
     organization: "MGA Holding",
     photo: "/images/people/Foto-Rafael.png",
     links: [
-      { platform: "email", value: "exemplo@mga.com.br" },
-      { platform: "linkedin", value: "https://www.linkedin.com/in/exemplo" },
-      { platform: "whatsapp", value: "5544999990000" },
-      { platform: "phone", value: "5544999990000" },
-      { platform: "instagram", value: "https://www.instagram.com/exemplo" },
+      { platform: "email", value: "mailto:rafaelalmeida@mgabrazil.com" },
+      { platform: "whatsapp", value: "https://wa.me/556183772719" },
+      { platform: "phone", value: "tel:+556183772719" },
+      { platform: "instagram", value: "https://www.instagram.com/rafaelalmeidaofc_/" },
     ],
   },
   {
-    slug: "nemola",
-    name: "Nemola",
-    role: "Diretor Comercial",
+    slug: "gabriel",
+    name: "Gabriel Almeida",
+    role: "Sócio",
     organization: "MGA Holding",
-    photo: "",
+    photo: "/images/people/Foto-Gabriel.png",
     links: [
-      { platform: "email", value: "exemplo@mga.com.br" },
-      { platform: "linkedin", value: "https://www.linkedin.com/in/exemplo" },
-      { platform: "whatsapp", value: "5544999990000" },
-      { platform: "phone", value: "5544999990000" },
-      { platform: "instagram", value: "https://www.instagram.com/exemplo" },
+      { platform: "email", value: "mailto:gabrielalmeida@mgabrazil.com" },
+      { platform: "whatsapp", value: "https://wa.me/5511914836445" },
+      { platform: "phone", value: "tel:+5511914836445" },
+      { platform: "instagram", value: "https://www.instagram.com/tourpelomundo/" },
     ],
   },
+  {
+    slug: "matheus",
+    name: "Matheus Gouveia",
+    role: "Sócio",
+    organization: "MGA Holding",
+    photo: "/images/people/Foto-Matheus.png",
+    links: [
+      { platform: "email", value: "mailto:matheusgouveia@mgabrazil.com" },
+      { platform: "whatsapp", value: "https://wa.me/556181506250" },
+      { platform: "phone", value: "tel:+556181506250" },
+      { platform: "instagram", value: "https://www.instagram.com/matheusgouveiia/" },
+    ],
+  }, 
 ];
